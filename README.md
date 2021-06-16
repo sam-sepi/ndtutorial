@@ -1,3 +1,3 @@
 # REST tutorial
 
-Node, Express, MongoDB
+REST Service with Node, Express, MongoDB, Mongoose
