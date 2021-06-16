@@ -2,8 +2,20 @@ import Game from "../models/game.js"
 
 const gameController = {}
 
-gameController.getAllGames = (req, res) => res.send('All games')
-gameController.getSingleGame = (req, res) => res.send('Single Game')
+gameController.getAllGames = (req, res) => 
+{
+    Game.find()
+        .then(games => res.json(games)) 
+        .catch(error => res.json(error))
+}
+
+gameController.getSingleGame = (req, res) => 
+{
+    Game.find( { _id: req.params.id })
+        .then(gg => res.json(gg)) 
+        .catch(error => res.json(error))
+}
+
 gameController.postGame = (req, res) => 
 {
     const gg = new Game(
@@ -16,8 +28,8 @@ gameController.postGame = (req, res) =>
     )
     
     gg.save()
-    .then(game => res.json(game))
-    .catch(error => res.json(error))
+        .then(game => res.json(game))
+        .catch(error => res.json(error))
 }
 
 export default gameController
